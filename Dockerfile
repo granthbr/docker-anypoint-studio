@@ -19,7 +19,8 @@ RUN 	sed 's/main$/main universe/' -i /etc/apt/sources.list && \
     	rm -rf /tmp/*
 		
 # Setup the additional libraries
-RUN 	apt-get update && apt-get install -y libgtk2.0-0 libcanberra-gtk-module
+RUN 	apt-get update && apt-get install -y libgtk2.0-0 libcanberra-gtk-module \ 
+		&& apt-get install maven -y
 
 ## Retriev studio for Linux off S3 and uncompress
 RUN 	wget https://mule-studio.s3.amazonaws.com/6.2.3-U3/AnypointStudio-for-linux-64bit-$STUDIO_VERSION.tar.gz -O /tmp/studio.tar.gz -q && \ 

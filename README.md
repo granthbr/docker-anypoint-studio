@@ -29,5 +29,5 @@ docker run -d -it -e DISPLAY=$DISPLAY_MAC --name anypoint-studio  <docker-hub-us
 Or with external mounted volumes (recommended for persistent workspace and libraries. To externally host the libs, first run without volumes, then onces the container is running, copy the features and plugins out to the external environment like so:
 docker cp anypoint-studio:/opt/AnypointStudio/features . and docker cp anypoint-studio:/opt/AnypointStudio/plugins .)
 ```
-docker run -it -e DISPLAY=$DISPLAY_MAC --name studio -v `pwd`/features:/opt/AnypointStudio/features -v `pwd`/plugins:/opt/AnypointStudio/plugins -v `pwd`/workspace:/home/mule/workspace  granthbr/studio
+docker run -d -it -e DISPLAY=$DISPLAY_MAC --name studio -v `pwd`/features:/opt/AnypointStudio/features -v `pwd`/plugins:/opt/AnypointStudio/plugins -v `pwd`/workspace:/home/mule/workspace  granthbr/studio
 ```
