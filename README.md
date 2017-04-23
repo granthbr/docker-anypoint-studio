@@ -9,13 +9,18 @@ Currently, this Docker image is specific to Mac OSX.
 2. Assign IP address or hostname to xquartz :  
    This: DISPLAY_MAC=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
    or this: DISPLAY_MAC=`ifconfig en0 | grep "inet " | cut -d " " -f2`:0
-   or this: ip=`hostname`
+   or this: DISPLAY_MAC=`hostname`
+   Then run:
+   xhost + $DISPLAY_MAC
 Should return:
 192.168.86.23 being added to access control list (of course, whatever your IP address is should be returned.)
 
 
 #### Instructions for build and run
-
+Build the image:
+```
+docker build -t <docker-hub-username>/studio .
+```
 Can be ran with internally hosted workspace and libs:
 ```
 docker run -d -it -e DISPLAY=$DISPLAY_MAC --name anypoint-studio  <docker-hub-username>/studio
