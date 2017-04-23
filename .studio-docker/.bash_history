@@ -1,0 +1,3 @@
+pwd
+ls /opt/
+exit
