@@ -60,3 +60,8 @@ There are certain restrictions to running the IDE in a Docker container. There s
 1. Running/debugging in the IDE. 
 	- Opening the ports in the run command can allow access to the application on the assigned port. 
 	- Open up the Mule Runtime Debugger port. Usually port 6666.
+	
+#### TODO
+1. Configure for Docker Compose
+2. Clean up X11 process
+3. Setup for Windows... (yuck)
