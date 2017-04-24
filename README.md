@@ -8,7 +8,8 @@ Currently, this Docker image is specific to Mac OSX.
 1. XQuartz: Install XQuartz.
 	 - Easiest method for installation is to use homebrew: brew cask install xquartz
 	 
-2.There are a couple of methods to start the X11 engine with quartz. 
+2. There are a couple of methods to start the X11 engine with quartz. 
+
 *** Warning:There might be an error running studio such as "AnypointStudio: Cannot open display", try to use each one of the below commands and attempt to run studio again.Assign IP address or hostname to xquartz ***   
    
    a. Method 1: DISPLAY_MAC=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
