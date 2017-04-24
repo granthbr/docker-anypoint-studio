@@ -11,6 +11,8 @@ Currently, this Docker image is specific to Mac OSX.
    or this: DISPLAY_MAC=`ifconfig en0 | grep "inet " | cut -d " " -f2`:0
    or this: DISPLAY_MAC=`hostname`
    Then run:
+   xhost 
+   If you have problems with multiple IPs. Try
    xhost + $DISPLAY_MAC
 Should return:
 192.168.86.23 being added to access control list (of course, whatever your IP address is should be returned.)
