@@ -6,7 +6,7 @@ Currently, this Docker image is specific to Mac OSX.
 #### Pre-requisites
 
 1. XQuartz -- Install XQuartz. Easiest to install with homebrew: brew cask install xquartz
-2. Assign IP address or hostname to xquartz :  
+2.There are a couple of methods to start the X11 engine with quartz. If there is an error running studio such as "AnypointStudio: Cannot open display", try to use each one of the below commands and attempt to run studio again.Assign IP address or hostname to xquartz :  
    This: DISPLAY_MAC=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
    or this: DISPLAY_MAC=`ifconfig en0 | grep "inet " | cut -d " " -f2`:0
    or this: DISPLAY_MAC=`hostname`
@@ -31,5 +31,5 @@ docker run -d -it -e DISPLAY=$DISPLAY_MAC --name anypoint-studio  <docker-hub-us
 Or with external mounted volumes (recommended for persistent workspace and libraries. To externally host the libs, first run without volumes, then onces the container is running, copy the features and plugins out to the external environment like so:
 docker cp anypoint-studio:/opt/AnypointStudio/features . and docker cp anypoint-studio:/opt/AnypointStudio/plugins .)
 ```
-docker run -d -it -e DISPLAY=$DISPLAY_MAC --name studio -v `pwd`/features:/opt/AnypointStudio/features -v `pwd`/plugins:/opt/AnypointStudio/plugins -v `pwd`/workspace:/home/mule/workspace  granthbr/studio
+docker run -it --rm -e DISPLAY=$DISPLAY_MAC --name studio -v `pwd`/features:/opt/AnypointStudio/features -v `pwd`/plugins:/opt/AnypointStudio/plugins -v `pwd`/workspace:/home/mule/workspace  granthbr/studio
 ```
