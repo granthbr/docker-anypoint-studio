@@ -1,9 +1,9 @@
-#### Run Anypoint Studio in Docker
+## Run Anypoint Studio in Docker
 
 Build and run Anypoint Studio in an Ubuntu image. Expose the correct ports, volumes (for libs and plugins), and workspace for persistence. 
 Currently, this Docker image is specific to Mac OSX. 
 
-#### Pre-requisites
+### Pre-requisites
 
 1. XQuartz: Install XQuartz.
 	 - Easiest method for installation is to use homebrew: brew cask install xquartz
@@ -25,7 +25,7 @@ Currently, this Docker image is specific to Mac OSX.
 	192.168.86.23 being added to access control list
 
 
-#### Instructions for build and run
+### Instructions for build and run
 
 Below, the reference to <docker-hub-username> should be replaced with your docker store/hub user name. For example, mine is granthbr.
 
@@ -53,7 +53,7 @@ Running with ports open:
 docker run -it --rm -e DISPLAY=$DISPLAY_MAC --name studio -p 8181:8181 -p 6666:6666 -v `pwd`/features:/opt/AnypointStudio/features -v `pwd`/plugins:/opt/AnypointStudio/plugins -v `pwd`/workspace:/home/mule/workspace -v ~/.m2:/home/mule/.m2 <docker-hub-username>/studio
 ```
 
-#### Caveats
+### Caveats
 
 There are certain restrictions to running the IDE in a Docker container. There should be handlers and adjustments that assist with manaeuvering around the obstacles.
 
@@ -61,7 +61,7 @@ There are certain restrictions to running the IDE in a Docker container. There s
 	- Opening the ports in the run command can allow access to the application on the assigned port. 
 	- Open up the Mule Runtime Debugger port. Usually port 6666.
 	
-#### TODO
+### TODO
 1. Configure for Docker Compose
 2. Clean up X11 process
 3. Setup for Windows... (yuck)
