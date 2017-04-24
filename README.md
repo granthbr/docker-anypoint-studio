@@ -7,17 +7,21 @@ Currently, this Docker image is specific to Mac OSX.
 
 1. XQuartz: Install XQuartz.
 	 - Easiest method for installation is to use homebrew: brew cask install xquartz
+	 
 2.There are a couple of methods to start the X11 engine with quartz. 
 *** Warning:There might be an error running studio such as "AnypointStudio: Cannot open display", try to use each one of the below commands and attempt to run studio again.Assign IP address or hostname to xquartz ***   
-   Method 1: DISPLAY_MAC=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
-   Method 2: DISPLAY_MAC=`ifconfig en0 | grep "inet " | cut -d " " -f2`:0
-   Method 3: DISPLAY_MAC=`hostname`
+   
+   a. Method 1: DISPLAY_MAC=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
+   b. Method 2: DISPLAY_MAC=`ifconfig en0 | grep "inet " | cut -d " " -f2`:0
+   c. Method 3: DISPLAY_MAC=`hostname`
+   
    Start xhost:
-   Method 1: xhost 
+   a. Method 1: xhost 
    If you have problems with multiple IPs. Try
-   Method 2: xhost + $DISPLAY_MAC
-A response should return something similar the message below:
-192.168.86.23 being added to access control list
+   b. Method 2: xhost + $DISPLAY_MAC
+   
+	A response should return something similar the message below:
+	192.168.86.23 being added to access control list
 
 
 #### Instructions for build and run
@@ -43,9 +47,15 @@ Next, use a command similar to the command below:
 ```
 docker run -it --rm -e DISPLAY=$DISPLAY_MAC --name studio -v `pwd`/features:/opt/AnypointStudio/features -v `pwd`/plugins:/opt/AnypointStudio/plugins -v `pwd`/workspace:/home/mule/workspace -v ~/.m2:/home/mule/.m2 <docker-hub-username>/studio
 ```
+Running with ports open:
+```
+docker run -it --rm -e DISPLAY=$DISPLAY_MAC --name studio -p 8181:8181 -p 6666:6666 -v `pwd`/features:/opt/AnypointStudio/features -v `pwd`/plugins:/opt/AnypointStudio/plugins -v `pwd`/workspace:/home/mule/workspace -v ~/.m2:/home/mule/.m2 <docker-hub-username>/studio
+```
 
 #### Caveats
+
 There are certain restrictions to running the IDE in a Docker container. There should be handlers and adjustments that assist with manaeuvering around the obstacles.
+
 1. Running/debugging in the IDE. 
 	- Opening the ports in the run command can allow access to the application on the assigned port. 
 	- Open up the Mule Runtime Debugger port. Usually port 6666.
