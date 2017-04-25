@@ -18,6 +18,7 @@ Currently, this Docker image is specific to Mac OSX.
    
    Start xhost:
    a. Method 1: xhost 
+   
    If you have problems with multiple IPs. Try
    b. Method 2: xhost + $DISPLAY_MAC
    
