@@ -66,3 +66,6 @@ There are certain restrictions to running the IDE in a Docker container. There s
 1. Configure for Docker Compose
 2. Clean up X11 process
 3. Setup for Windows... (yuck)
+
+###### Informational
+The docker-entrypoint.sh script will exit the run script if any commnad fails and exec "$@" will redirect input variables if the user adds any. 
