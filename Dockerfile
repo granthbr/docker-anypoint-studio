@@ -43,14 +43,12 @@ RUN    chmod +x /usr/local/bin/studio && \
        chown mule:mule -R /home/mule && \
        chown root:root /usr/bin/sudo && chmod 4755 /usr/bin/sudo
 
-
-
 ## Change to the mule user and create home
 USER   mule
 ENV    HOME /home/mule
 WORKDIR /home/mule
 ADD docker-entrypoint.sh /home/mule/
-RUN sudo chmod 775 /home/mule/docker-entrypoint.sh && sudo chown mule.mule /home/mule/docker-entrypoint.sh
-# ENTRYPOINT ["/home/mule/docker-entrypoint.sh"]
+# RUN sudo chmod 775 /home/mule/docker-entrypoint.sh && sudo chown mule.mule /home/mule/docker-entrypoint.sh
+ENTRYPOINT ["/home/mule/docker-entrypoint.sh"]
 ## Run the start command
-# CMD    /usr/local/bin/studio
+CMD    /usr/local/bin/studio

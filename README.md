@@ -12,15 +12,15 @@ Currently, this Docker image is specific to Mac OSX.
 
 *** Warning:There might be an error running studio such as "AnypointStudio: Cannot open display", try to use each one of the below commands and attempt to run studio again.Assign IP address or hostname to xquartz ***   
    
-   a. Method 1: DISPLAY_MAC=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
-   b. Method 2: DISPLAY_MAC=`ifconfig en0 | grep "inet " | cut -d " " -f2`:0
-   c. Method 3: DISPLAY_MAC=`hostname`
+   * Method 1: DISPLAY_MAC=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
+   * Method 2: DISPLAY_MAC=`ifconfig en0 | grep "inet " | cut -d " " -f2`:0
+   * Method 3: DISPLAY_MAC=`hostname`
    
    Start xhost:
-   a. Method 1: xhost 
+   * Method 1: xhost 
    
    If you have problems with multiple IPs. Try
-   b. Method 2: xhost + $DISPLAY_MAC
+   * Method 2: xhost + $DISPLAY_MAC
    
 	A response should return something similar the message below:
 	192.168.86.23 being added to access control list
@@ -51,7 +51,7 @@ docker run -it --rm -e DISPLAY=$DISPLAY_MAC --name studio -v `pwd`/features:/opt
 ```
 Running with ports open:
 ```
-docker run -it --rm -e DISPLAY=$DISPLAY_MAC --name studio -p 8181:8181 -p 6666:6666 -v `pwd`/features:/opt/AnypointStudio/features -v `pwd`/plugins:/opt/AnypointStudio/plugins -v `pwd`/workspace:/home/mule/workspace -v ~/.m2:/home/mule/.m2 <docker-hub-username>/studio
+docker run -it --rm -e DISPLAY=$DISPLAY_MAC --name studio -p 127.0.0.1:8181:8181 -p 127.0.0.1:6666:6666 -v `pwd`/features:/opt/AnypointStudio/features -v `pwd`/plugins:/opt/AnypointStudio/plugins -v `pwd`/workspace:/home/mule/workspace -v ~/.m2:/home/mule/.m2 <docker-hub-username>/studio
 ```
 
 ### Caveats
