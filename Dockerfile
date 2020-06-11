@@ -60,6 +60,8 @@ RUN \
     echo "Customized the sudoers file for passwordless access to the mule user!" && \
     echo "mule user:";  su - mule -c id     
 
+
+
 ## Change to the mule user and create home
 USER   mule
 ENV    HOME /home/mule
