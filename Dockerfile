@@ -50,7 +50,6 @@ ADD run /usr/local/bin/studio
       #chown root:root /usr/bin/sudo
       #chmod 4755 /usr/bin/sudo
 
-
 RUN \
     groupadd -g 999 mule && useradd -u 999 -g mule -G sudo -m -s /bin/bash mule && \
     sed -i /etc/sudoers -re 's/^%sudo.*/%sudo ALL=(ALL:ALL) NOPASSWD: ALL/g' && \
@@ -59,8 +58,6 @@ RUN \
     echo "mule ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
     echo "Customized the sudoers file for passwordless access to the mule user!" && \
     echo "mule user:";  su - mule -c id     
-
-
 
 ## Change to the mule user and create home
 USER   mule
@@ -72,4 +69,5 @@ RUN   ls -al /home/mule
       #chown mule.mule /home/mule/docker-entrypoint.sh
 ENTRYPOINT ["/home/mule/docker-entrypoint.sh"]
 ## Run the start command
-CMD    /usr/local/bin/studio
+#CMD    /usr/local/bin/studio
+CMD   ./opt/AnypointStudio/AnypointStudio 
