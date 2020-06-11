@@ -39,10 +39,21 @@ Pre-check:
 
 Let's give it a try:
 - Download this repo and unzip it wherever you like
-- From a terminal, navigate to the folder you unzipped the project.
+- From a terminal, navigate to the folder you unzipped or cloned the project.
 - Build the container with the command:
 	- `docker build -t <replace-with-your-docker-hub-username>/studio .`
+
+![enter image description here](https://i.imgur.com/juJZTEw.jpg)
+
 - Run the container with the command:
 	- `docker run -d -it -e DISPLAY=$DISPLAY_MAC --name anypoint-studio  <replace-with-your-docker-hub-username>/studio`
+
+![enter image description here](https://i.imgur.com/MM8mjx2.jpg)
+
 - Open the xhost Session:
 	- `xhost` <-- This is still not fully working.
+
+
+---
+In case of emergency, Nuke docker completly:
+ - `docker system prune -a --volumes`
