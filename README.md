@@ -44,5 +44,4 @@ Let's give it a try:
 	- `docker build -t <replace-with-your-docker-hub-username>/studio .`
 - Run the container with the command:
 	- `docker run -d -it -e DISPLAY=$DISPLAY_MAC --name anypoint-studio  <replace-with-your-docker-hub-username>/studio`
-
-... Still under construction....
+- Run the command `xhost` <-- This is still not fully working.
