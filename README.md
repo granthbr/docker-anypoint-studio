@@ -1,71 +1,34 @@
-## Run Anypoint Studio in Docker
+Mulesoft Anypoint Studio ubuntu Docker edition
+---
 
-Build and run Anypoint Studio in an Ubuntu image. Expose the correct ports, volumes (for libs and plugins), and workspace for persistence. 
-Currently, this Docker image is specific to Mac OSX. 
+**Ubuntu version**: Desktop 20.04
+**Anypoint Studio Version**: 7.5.0 w/ Runtime 4.3
+**Host OS**: MacOS Catalina
 
-### Pre-requisites
+---
 
-1. XQuartz: Install XQuartz.
-	 - Easiest method for installation is to use homebrew: brew cask install xquartz
-	 
-2. There are a couple of methods to start the X11 engine with quartz. 
+# Goal:
 
-*** Warning:There might be an error running studio such as "AnypointStudio: Cannot open display", try to use each one of the below commands and attempt to run studio again.Assign IP address or hostname to xquartz ***   
-   
-   * Method 1: DISPLAY_MAC=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
-   * Method 2: DISPLAY_MAC=`ifconfig en0 | grep "inet " | cut -d " " -f2`:0
-   * Method 3: DISPLAY_MAC=`hostname`
-   
-   Start xhost:
-   * Method 1: xhost 
-   
-   If you have problems with multiple IPs. Try
-   * Method 2: xhost + $DISPLAY_MAC
-   
-	A response should return something similar the message below:
-	192.168.86.23 being added to access control list
+You want to, from a simple and automatic method have an virtual environment with all the tools you need to work with Anypoint Studio. 
 
 
-### Instructions for build and run
+# FAQ:
 
-Below, the reference to <docker-hub-username> should be replaced with your docker store/hub user name. For example, mine is granthbr.
+ - Why not a VM?
+	 - Having a fully functional VM that you can import into VMWARE or VIRTUALBOX is indeed an option but you have to have the vm file around and you need to create it, you need need to install everything. This option take that out and all you need is to run a command.
+- How is the performance?
+	- This "solution" will work for simple application and testing, do not think of it as a replacement.
+- Does this replace installing all the software locally?
+	- No, having the software installed will always be a better option, the goal here is to have a testing environment that can be quickly deployed with all the tools you need.
 
-Build the image:
-```
-docker build -t <docker-hub-username>/studio .
-```
+How to run
+---
+- Install [Docker Desktop](https://www.docker.com/products/docker-desktop) if you haven't
+- Sign up in [Docker Hub](https://hub.docker.com/signup) if you haven't
+- Download this repo and unzip it wherever you like
+- From a terminal, navigate to the folder you unzipped the project.
+- Build the container with the command:
+	- `docker build -t <replace-with-your-docker-hub-username>/studio .`
+- Run the container with the command:
+	- `docker run -d -it -e DISPLAY=$DISPLAY_MAC --name anypoint-studio  <replace-with-your-docker-hub-username>/studio`
 
-Can be ran with internally hosted workspace, maven, and libs:
-```
-docker run -d -it -e DISPLAY=$DISPLAY_MAC --name anypoint-studio  <docker-hub-username>/studio
-```
-
-Or with external mounted volumes (recommended for persistent workspace, maven repo, and libraries. To externally host the libs, first run without volumes (see above), then onces the container is running, copy the features and plugins out to the external environment like so:
-```
-docker cp anypoint-studio:/opt/AnypointStudio/features . and docker cp anypoint-studio:/opt/AnypointStudio/plugins .
-```
-Next, use a command similar to the command below:
-(include the --rm command if you don't want the image to persist after you build it)
-```
-docker run -it --rm -e DISPLAY=$DISPLAY_MAC --name studio -v `pwd`/features:/opt/AnypointStudio/features -v `pwd`/plugins:/opt/AnypointStudio/plugins -v `pwd`/workspace:/home/mule/workspace -v ~/.m2:/home/mule/.m2 <docker-hub-username>/studio
-```
-Running with ports open:
-```
-docker run -it --rm -e DISPLAY=$DISPLAY_MAC --name studio -p 127.0.0.1:8181:8181 -p 127.0.0.1:6666:6666 -v `pwd`/features:/opt/AnypointStudio/features -v `pwd`/plugins:/opt/AnypointStudio/plugins -v `pwd`/workspace:/home/mule/workspace -v ~/.m2:/home/mule/.m2 <docker-hub-username>/studio
-```
-
-### Caveats
-
-There are certain restrictions to running the IDE in a Docker container. There should be handlers and adjustments that assist with manaeuvering around the obstacles.
-
-1. Running/debugging in the IDE. 
-	- Opening the ports in the run command can allow access to the application on the assigned port. 
-	- Open up the Mule Runtime Debugger port. Usually port 6666.
-	
-### TODO
-1. Configure for Docker Compose
-2. Clean up X11 process
-3. Setup for Windows... (yuck)
-
-###### Informational
-The docker-entrypoint.sh script will exit the run script if any commnad fails and exec "$@" will redirect input variables if the user adds any. 
