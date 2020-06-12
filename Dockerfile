@@ -3,10 +3,10 @@
 FROM ubuntu:20.04
 MAINTAINER Brandon Grantham <brandon.grantham@mulesoft.com>
 
-LABEL Description="MuleSoft Anypoint Studio"
+LABEL Description="MuleSoft Anypoint Studio 7"
 
 ## Set version for build
-ARG STUDIO_VERSION=6.6.5-202005271503
+ARG STUDIO_VERSION=7.5.1
 
 ## Update Ubuntu in preparation for installing Anypoint Studio
 
@@ -25,7 +25,7 @@ RUN   apt-get update && apt-get install -y libgtk2.0-0 libcanberra-gtk-module \
     && apt-get install maven -y
 
 # Download and Extract Studio
-RUN   wget -nv --show-progress --progress=bar:force:noscroll  https://mule-studio.s3.amazonaws.com/6.6.5-U5/AnypointStudio-for-linux-64bit-$STUDIO_VERSION.tar.gz -O /tmp/studio.tar.gz -q \ 
+RUN   wget -nv --show-progress --progress=bar:force:noscroll  http://mule-studio.s3.amazonaws.com/STUDIO_VERSION-U1/AnypointStudio-STUDIO_VERSION-linux64.tar.gz -O /tmp/studio.tar.gz -q \ 
         && echo 'Installing Studio' \
   && tar -zxf /tmp/studio.tar.gz -C /opt && \ 
   rm /tmp/studio.tar.gz
