@@ -25,7 +25,7 @@ RUN   apt-get update && apt-get install -y libgtk2.0-0 libcanberra-gtk-module \
     && apt-get install maven -y
 
 # Download and Extract Studio
-RUN   wget -nv --show-progress --progress=bar:force:noscroll  http://mule-studio.s3.amazonaws.com/STUDIO_VERSION-U1/AnypointStudio-STUDIO_VERSION-linux64.tar.gz -O /tmp/studio.tar.gz -q \ 
+RUN   wget -nv --show-progress --progress=bar:force:noscroll  http://mule-studio.s3.amazonaws.com/$STUDIO_VERSION-U1/AnypointStudio-$STUDIO_VERSION-linux64.tar.gz -O /tmp/studio.tar.gz -q \ 
         && echo 'Installing Studio' \
   && tar -zxf /tmp/studio.tar.gz -C /opt && \ 
   rm /tmp/studio.tar.gz
