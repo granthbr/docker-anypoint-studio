@@ -58,6 +58,8 @@ Let's give it a try:
 
 - Voila!
 ![enter image description here](https://i.imgur.com/Mlj7k4s.jpg)
+
+- From now, all you have to do to start Studio is to run the command `docker start anypoint-studio`
 ---
 In case of emergency, Nuke docker completly:
  - `docker system prune -a --volumes`
