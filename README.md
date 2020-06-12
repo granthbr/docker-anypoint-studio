@@ -57,9 +57,12 @@ Let's give it a try:
 	- `docker run -d -it -e DISPLAY=<replace-with-your-local-IP>:0 --name anypoint-studio7  <replace-with-your-docker-hub-username>/studio`
 
 - Voila!
-![enter image description here](https://i.imgur.com/Mlj7k4s.jpg)
 
 - From now, all you have to do to start Studio is to run the command `docker start anypoint-studio7`
 ---
 In case of emergency, Nuke docker completly:
  - `docker system prune -a --volumes`
+
+---
+To-do:
+- update docker file to make it compatible with studio7 since the way it launches changed from studio6
