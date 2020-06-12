@@ -51,10 +51,13 @@ Let's give it a try:
 - Build the container with the command:
 	- `docker build -t <replace-with-your-docker-hub-username>/studio .`
 
+![enter image description here](https://i.imgur.com/juJZTEw.jpg)
+
 - Run the container with the command:
 	- `docker run -d -it -e DISPLAY=<replace-with-your-local-IP>:0 --name anypoint-studio  <replace-with-your-docker-hub-username>/studio`
 
-- Voila! Studio 6.6.5 should open.
+- Voila!
+![enter image description here](https://i.imgur.com/Mlj7k4s.jpg)
 ---
 In case of emergency, Nuke docker completly:
  - `docker system prune -a --volumes`
