@@ -44,9 +44,9 @@ Pre-check:
  - **Socat**
    - Command: `brew install socat`
 - Make sure XQuartz accept client connections:
- - run the command: `open -a Xquartz`
- - On the top left menu, click on ""XQuartz" and select "Preferences"
- - On the "Security" section, be sure "Allow connections from network clients" is marked.
+  - run the command: `open -a Xquartz`
+  - On the top left menu, click on ""XQuartz" and select "Preferences"
+  - On the "Security" section, be sure "Allow connections from network clients" is marked.
 - Make sure socat is listenning on the port 6000:
   - Command: `socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$DISPLAY\"`
 
@@ -66,5 +66,5 @@ Let's give it a try:
 
 - From now, all you have to do to start Studio is to run the command `docker start anypoint-studio`
 ---
-In case of emergency, Nuke docker completely:
+In case you need to start from zero, this command will remove all docker images:
  - `docker system prune -a --volumes`
