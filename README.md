@@ -7,7 +7,7 @@ Mulesoft Anypoint Studio ubuntu Docker edition
 
 **Host OS**: MacOS Catalina
 
----
+
 
 # Goal:
 
@@ -25,9 +25,14 @@ You want to, from a simple and automatic method have an virtual environment with
 - Does this replace installing all the software locally?
 	- No, having the software installed will always be a better option, the goal here is to have a testing environment that can be quickly deployed with all the tools you need.
 
+- Do the projects created stay saved when I close the container?
+  - No, when you close the container, nothing is saved, the next time you open will be from scratch, this include any kind of created project, download or update(s).
 
-How to run
----
+- What version of Studio is this?
+  - version 6.6.5, build 202005271503
+
+# How to build locally and run.
+
 Pre-check:
 
 - Sign up in [Docker Hub](https://hub.docker.com/signup) if you haven't already
@@ -61,5 +66,5 @@ Let's give it a try:
 
 - From now, all you have to do to start Studio is to run the command `docker start anypoint-studio`
 ---
-In case of emergency, Nuke docker completly:
+In case of emergency, Nuke docker completely:
  - `docker system prune -a --volumes`
