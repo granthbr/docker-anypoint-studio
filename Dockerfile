@@ -22,7 +22,7 @@ RUN   sed 's/main$/main universe/' -i /etc/apt/sources.list \
     
 # Setup the additional libraries
 RUN   apt-get update \
-      && apt-get install -y libgtk-3-0 libcanberra-gtk-module maven 
+      && apt-get install -y libgtk-3-0 libcanberra-gtk-module maven
 
 # Download and Extract Studio
 RUN  wget -nv --show-progress --progress=bar:force:noscroll  http://mule-studio.s3.amazonaws.com/$STUDIO_VERSION-U1/AnypointStudio-$STUDIO_VERSION-linux64.tar.gz -O /tmp/studio.tar.gz -q \ 
@@ -45,12 +45,12 @@ RUN    chmod +x /usr/local/bin/studio \
        && chmod 4755 /usr/bin/sudo
 
 ## Change to the mule user and create home
-USER        mule
+USER        root
 ENV         HOME /home/mule
 WORKDIR     /home/mule
 ADD         docker-entrypoint.sh /home/mule/
-#RUN         chmod a+rwx,o-w /home/mule/docker-entrypoint.sh \
-#            && sudo chown mule.mule /home/mule/docker-entrypoint.sh
+RUN         chmod a+rwx,o-w /home/mule/docker-entrypoint.sh \
+            && sudo chown mule.mule /home/mule/docker-entrypoint.sh
 ENTRYPOINT  ["/home/mule/docker-entrypoint.sh"]
 
 ## Run the start command
