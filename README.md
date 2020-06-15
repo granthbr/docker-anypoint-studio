@@ -42,28 +42,33 @@ Pre-check:
  - run the command: `open -a Xquartz`
  - On the top left menu, click on ""XQuartz" and select "Preferences"
  - On the "Security" section, be sure "Allow connections from network clients" is marked.
-- Make sure socat is listenning on the port 6000:
+- Make sure socat is listening on the port 6000:
   - Command: `socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$DISPLAY\"`
 
 Let's give it a try:
 - Download this repo and unzip it wherever you like
 - From a terminal, navigate to the folder you unzipped or cloned the project.
 - Build the container with the command:
-	- `docker build -t <replace-with-your-docker-hub-username>/studio7 .`
+	- `docker build -t <replace-with-your-docker-hub-username>/studio .`
 
 ![enter image description here](https://i.imgur.com/juJZTEw.jpg)
 
 - Run the container with the command:
-	- `docker run -d -it -e DISPLAY=<replace-with-your-local-IP>:0 --name anypoint-studio7  <replace-with-your-docker-hub-username>/studio`
 
-- Voila!
+    `docker run -d -it -v /Users/[your-local-username]/Desktop:/root/AnypointStudio/studio-workspace -p 8081:8081 -e DISPLAY=[your-local-ip]:0 --name anypoint-studio [your-docker-hub-username]/studio`
 
-- From now, all you have to do to start Studio is to run the command `docker start anypoint-studio7`
+- Accept the default workspace folder (if you change it, all changes will be lost after stop the container)
+- That's it!.. have fun
+
+![enter image description here](https://i.imgur.com/hcYi0Bg.jpg)
+
+The docker run command above  will:
+- map your **local** port 8081 to the container's port 8081.
+- map your **local** desktop folder to the Container's /var/home/mule folder so your projects remains after you close.
+
+- From now, all you have to do to start Studio is to run the command `docker start anypoint-studio` or starting the container from teh docker dashboard, select the container and click on the "PLAY" icon.
 ---
-In case of emergency, Nuke docker completly:
+
+
+In case of emergency, Nuke all local docker images and containers completely:
  - `docker system prune -a --volumes`
-
----
-To-do:
-- fix folder permission issue to make studio fully launch
-- test ports and performance
