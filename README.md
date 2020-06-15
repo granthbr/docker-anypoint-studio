@@ -64,7 +64,7 @@ Let's give it a try:
 
 The docker run command above  will:
 - map your **local** port 8081 to the container's port 8081.
-- map your **local** desktop folder to the Container's /var/home/mule folder so your projects remains after you close.
+- map your **local** desktop folder to the Container's /root/AnypointStudio/studio-workspace folder so your projects remains after you close.
 
 - From now, all you have to do to start Studio is to run the command `docker start anypoint-studio` or starting the container from teh docker dashboard, select the container and click on the "PLAY" icon.
 ---
