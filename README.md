@@ -65,4 +65,5 @@ In case of emergency, Nuke docker completly:
 
 ---
 To-do:
-- update docker file to make it compatible with studio7 since the way it launches changed from studio6
+- fix folder permission issue to make studio fully launch
+- test ports and performance
