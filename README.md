@@ -7,7 +7,7 @@ Mulesoft Anypoint Studio ubuntu Docker edition
 
 **Host OS**: MacOS Catalina
 
-
+---
 
 # Goal:
 
@@ -25,14 +25,9 @@ You want to, from a simple and automatic method have an virtual environment with
 - Does this replace installing all the software locally?
 	- No, having the software installed will always be a better option, the goal here is to have a testing environment that can be quickly deployed with all the tools you need.
 
-- Do the projects created stay saved when I close the container?
-  - No, when you close the container, nothing is saved, the next time you open will be from scratch, this include any kind of created project, download or update(s).
 
-- What version of Studio is this?
-  - version 6.6.5, build 202005271503
-
-# How to build locally and run.
-
+How to run
+---
 Pre-check:
 
 - Sign up in [Docker Hub](https://hub.docker.com/signup) if you haven't already
@@ -44,9 +39,9 @@ Pre-check:
  - **Socat**
    - Command: `brew install socat`
 - Make sure XQuartz accept client connections:
-  - run the command: `open -a Xquartz`
-  - On the top left menu, click on ""XQuartz" and select "Preferences"
-  - On the "Security" section, be sure "Allow connections from network clients" is marked.
+ - run the command: `open -a Xquartz`
+ - On the top left menu, click on ""XQuartz" and select "Preferences"
+ - On the "Security" section, be sure "Allow connections from network clients" is marked.
 - Make sure socat is listenning on the port 6000:
   - Command: `socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$DISPLAY\"`
 
@@ -59,12 +54,23 @@ Let's give it a try:
 ![enter image description here](https://i.imgur.com/juJZTEw.jpg)
 
 - Run the container with the command:
-	- `docker run -d -it -e DISPLAY=<replace-with-your-local-IP>:0 --name anypoint-studio  <replace-with-your-docker-hub-username>/studio`
 
-- Voila!
+    `docker run -d -it -v /Users/[your-local-username]/Desktop:/root/AnypointStudio/studio-workspace -p 8081:8081 -e DISPLAY=[your-local-ip]:0 --name anypoint-studio [your-docker-hub-username]/studio`
+
+- Accept the default workspace folder (if you change it, all changes will be lost after stop the container)
+
+- That's it!.. have fun
+
 ![enter image description here](https://i.imgur.com/Mlj7k4s.jpg)
 
-- From now, all you have to do to start Studio is to run the command `docker start anypoint-studio`
+The docker run command above  will:
+
+- map your **local** port 8081 to the container's port 8081.
+- map your **local** desktop folder to the Container's /root/AnypointStudio/studio-workspace folder so your projects remains after you close.
+
+- From now, all you have to do to start Studio is to run the command `docker start anypoint-studio` or starting the container from the docker dashboard, select the container and click on the "PLAY" icon.
 ---
-In case you need to start from zero, this command will remove all docker images:
+
+
+In case of emergency, Nuke all local docker images and containers completely:
  - `docker system prune -a --volumes`
