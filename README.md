@@ -28,15 +28,17 @@ You want to, from a simple and automatic method have an virtual environment with
 
 # How to run:
 
-## Pre-check (MacOS):
+## Prerequisites:
 
 - Sign up in [Docker Hub](https://hub.docker.com/signup) if you haven't already
-- Install the following software if you haven't already
- - [Docker Desktop](https://www.docker.com/products/docker-desktop)
- - [Homebrew.](https://docs.brew.sh/Installation)
- - **XQuartz**
+- Install [Docker Desktop](https://www.docker.com/products/docker-desktop)
+
+## Pre-check (MacOS):
+
+ - Install [Homebrew.](https://docs.brew.sh/Installation)
+ - Install **XQuartz**
    - Command: `brew cask install xquartz`
- - **Socat**
+ - Install **Socat**
    - Command: `brew install socat`
 - Make sure XQuartz accept client connections:
  - run the command: `open -a Xquartz`
