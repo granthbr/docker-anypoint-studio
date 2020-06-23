@@ -58,12 +58,12 @@ You want to, from a simple and automatic method have an virtual environment with
 
 - Download this repo and unzip it wherever you like
 - From a terminal, navigate to the folder you unzipped or cloned the project.
-- Build the container with the command:
+- Build the image with the command:
 	- `docker build -t <replace-with-your-docker-hub-username>/studio .`
 
 ![enter image description here](https://i.imgur.com/juJZTEw.jpg)
 
-- Run the container with the command:
+- Run the image with the command:
 
     `docker run -d -it -v [full-path-to-desktop-folder]:/root/AnypointStudio/studio-workspace -p 8081:8081 -e DISPLAY=[your-local-ip]:0 --name anypoint-studio [your-docker-hub-username]/studio`
 
