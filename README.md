@@ -3,7 +3,7 @@ Mulesoft Anypoint Studio ubuntu Docker edition
 
 **Ubuntu version**: Desktop 20.04
 
-**Anypoint Studio Version**: 7.5.1 (Runtime v4.3)
+**Anypoint Studio Version**: 7.6.0 (Runtime v4.3)
 
 **Host OS**: MacOS Catalina / Windows 10
 
@@ -46,6 +46,8 @@ You want to, from a simple and automatic method have an virtual environment with
  - On the "Security" section, be sure "Allow connections from network clients" is marked.
 - Make sure socat is listening on the port 6000:
   - Command: `socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$DISPLAY\"`
+- Make sure Xquartz has access control disabled:
+  - Command: `xhost +"`
 
 
 ##  Pre-checks (windows):
